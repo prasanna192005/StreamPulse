@@ -60,3 +60,20 @@ GROUP BY
     release_year
 ORDER BY
     release_year ASC;
+
+-- Query 5: Yearly Growth in Play Counts per Track (Using JOIN and Window Function)
+-- Joins Tracks and Streaming_Events to analyze yearly play counts and uses LAG to show year-over-year growth for each track.
+SELECT
+    t.track_name,
+    t.release_year,
+    EXTRACT(YEAR FROM se.timestamp) AS play_year,
+    COUNT(se.event_id) AS play_count,
+    LAG(COUNT(se.event_id)) OVER (PARTITION BY t.track_name ORDER BY EXTRACT(YEAR FROM se.timestamp)) AS previous_year_play_count,
+    COUNT(se.event_id) - COALESCE(LAG(COUNT(se.event_id)) OVER (PARTITION BY t.track_name ORDER BY EXTRACT(YEAR FROM se.timestamp)), 0) AS yoy_play_count_diff
+FROM
+    Tracks t
+    JOIN Streaming_Events se ON t.track_name = se.track_name
+GROUP BY
+    t.track_name, t.release_year, play_year
+ORDER BY
+    t.track_name, play_year ASC;

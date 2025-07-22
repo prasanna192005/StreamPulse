@@ -14,12 +14,12 @@ This iteration of StreamPulse highlights an **SQL-only approach**, emphasizing d
 
 ## Table of Contents 📚
 
-1.  [Database Schema](#1-database-schema)
-2.  [Data Sources](#2-data-sources)
-3.  [Setup & Data Ingestion (MySQL)](#3-setup--data-ingestion-mysql)
-4.  [Key Analytical Queries & Insights](#4-key-analytical-queries--insights)
-5.  [Challenges & Learnings](#5-challenges--learnings)
-6.  [Skills Demonstrated](#6-skills-demonstrated)
+1.  [Database Schema](#1-database-schema-)
+2.  [Data Sources](#2-data-sources-)
+3.  [Setup & Data Ingestion (MySQL)](#3-setup--data-ingestion-mysql-)
+4.  [Key Analytical Queries & Insights](#4-key-analytical-queries--insights-)
+5.  [Challenges & Learnings](#5-challenges--learnings-)
+6.  [Skills Demonstrated](#6-skills-demonstrated-)
 
 
 ## 1. Database Schema 🗄️
@@ -101,6 +101,7 @@ The `sql/analysis/` directory contains various SQL queries designed to extract v
 * 🏆 **Top 10 Most Popular Tracks (by popularity score):** Identifies universally appealing content.
 * 🎧 **Top 10 Most Played Tracks & Artists (from streaming events):** Reveals actual user engagement with content.
 * 📊 **Trends in Audio Features Over Time:** Shows how music characteristics (e.g., danceability, energy) have evolved annually, informing content strategy.
+* 🪜 **Yearly Growth in Play Counts per Track (Advanced):** Uses JOINs and window functions (LAG) to analyze year-over-year growth in play counts for each track, providing deeper insight into trends and momentum.
 
 ### 4.2 Engagement & Retention Insights (`engagement_retention_queries.sql`) 🔄
 
@@ -108,6 +109,7 @@ The `sql/analysis/` directory contains various SQL queries designed to extract v
 * ⏱️ **Average Listen Duration by Platform:** Provides insights into user behavior on different devices/platforms, useful for platform-specific optimization.
 * ❓ **Most Common Reasons for Track Ending:** Helps understand user drop-off points, allowing for UX improvements.
 * 🔀 **Impact of Shuffle Mode on Play Duration:** Investigates user listening habits based on shuffle preference.
+* 📅 **User Retention Analysis (Advanced):** Uses JOINs and window functions (RANK) to analyze user retention by unique streaming days and rank users by engagement.
 
 ### 4.3 Monetization Insights (`monetization_queries.sql`) 💰
 
@@ -115,6 +117,7 @@ The `sql/analysis/` directory contains various SQL queries designed to extract v
 * 💃 **Tracks with High Popularity and High Danceability:** Identifies upbeat, popular content ideal for curated playlists or marketing campaigns.
 * 🕰️ **Average Popularity of Tracks by Release Decade:** Understands long-term appeal and evergreen content for catalog management.
 * 📱 **Most Common Platforms for Streaming:** Guides strategic partnerships or ad placement based on platform usage.
+* 🏅 **Track Ranking by Artist Play Time (Advanced):** Uses JOINs and window functions (RANK) to rank tracks by total play time within each artist, supporting monetization and promotional strategies.
 
 ## 5. Challenges & Learnings 🧩
 

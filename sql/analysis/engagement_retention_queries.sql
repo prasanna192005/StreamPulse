@@ -60,3 +60,19 @@ WHERE
     ms_played > 0
 GROUP BY
     shuffle;
+
+-- Query 5: User Retention Analysis (Using JOIN and Window Function)
+-- Joins Streaming_Events with Tracks to analyze user retention by counting unique streaming days and ranking users by retention.
+SELECT
+    se.user_id,
+    COUNT(DISTINCT DATE(se.timestamp)) AS unique_streaming_days,
+    COUNT(se.event_id) AS total_events,
+    RANK() OVER (ORDER BY COUNT(DISTINCT DATE(se.timestamp)) DESC) AS retention_rank
+FROM
+    Streaming_Events se
+    JOIN Tracks t ON se.track_name = t.track_name
+GROUP BY
+    se.user_id
+ORDER BY
+    retention_rank ASC
+LIMIT 10;

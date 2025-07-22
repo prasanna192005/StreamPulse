@@ -77,3 +77,21 @@ GROUP BY
 ORDER BY
     total_events DESC
 LIMIT 5;
+
+-- Query 5: Total Play Time and Track Ranking by Artist (Using JOIN and Window Function)
+-- Joins Tracks and Streaming_Events to calculate total play time per track and ranks tracks within each artist by play time.
+SELECT
+    t.track_name,
+    tra.artist_name,
+    SUM(se.ms_played) AS total_play_time_ms,
+    RANK() OVER (PARTITION BY tra.artist_name ORDER BY SUM(se.ms_played) DESC) AS track_rank_within_artist
+FROM
+    Tracks t
+    JOIN Streaming_Events se ON t.track_name = se.track_name
+    JOIN Temp_Raw_Artists tra ON se.artist_name = tra.artist_name
+GROUP BY
+    t.track_name,
+    tra.artist_name
+ORDER BY
+    tra.artist_name,
+    track_rank_within_artist ASC;
