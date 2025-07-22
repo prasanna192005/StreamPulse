@@ -1,4 +1,4 @@
-# StreamPulse: Data-Driven Music Streaming Analysis (MySQL - SQL Only) 🎵📊
+# StreamPulse: Data-Driven Music Streaming Analysis 🎵📊
 
 ## Project Overview 🚀
 
